@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Welcome Home Mama's Kutty</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Pacifico&display=swap');
+
+
+/* =========================================================
+   BASIC RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+
+/* =========================================================
+   BODY / COLORFUL BACKGROUND
+========================================================= */
+
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        linear-gradient(
+            270deg,
+            #ff6ec4,
+            #7873f5,
+            #42e695,
+            #f9ca24
+        );
+
+    background-size: 800% 800%;
+
+    animation:
+        gradientMove 12s ease infinite;
+
+    font-family: 'Poppins', sans-serif;
+
+    overflow: hidden;
+}
+
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* =========================================================
+   BOOK CONTAINER
+========================================================= */
+
+.book-scene {
+
+    width: 400px;
+
+    height: 500px;
+
+    perspective: 2500px;
+
+    position: relative;
+
+}
+
+
+/* =========================================================
+   BOOK
+========================================================= */
+
+.book {
+
+    width: 400px;
+
+    height: 500px;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+}
+
+
+/* =========================================================
+   COMMON PAGE
+========================================================= */
+
+.page {
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 500px;
+
+    top: 0;
+
+    left: 0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    transform-style: preserve-3d;
+
+}
+
+
+/* =========================================================
+   PAGE BACKGROUND
+========================================================= */
+
+.page-background {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a18cd1,
+            #fbc2eb,
+            #f9f586
+        );
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.20);
+
+}
+
+
+/* =========================================================
+   PAGE 2
+========================================================= */
+
+.page-two {
+
+    z-index: 1;
+
+}
+
+
+/* =========================================================
+   PAGE 1
+========================================================= */
+
+.page-one {
+
+    z-index: 3;
+
+    transform-origin: left center;
+
+    transition:
+        transform 1.4s cubic-bezier(.77,0,.18,1);
+
+}
+
+
+/*
+   Page 1 turns like a real page.
+*/
+
+.book.page-two-visible .page-one {
+
+    transform:
+        rotateY(-180deg);
+
+}
+
+
+/* =========================================================
+   PAGE CONTENT
+========================================================= */
+
+.page-content {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 4;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+}
+
+
+/* =========================================================
+   PAGE 1 TITLE
+========================================================= */
+
+.page-one h2 {
+
+    font-family: 'Pacifico', cursive;
+
+    color: #ff4081;
+
+    font-size: 25px;
+
+    line-height: 1.4;
+
+    margin: 0 0 20px;
+
+    max-width: 90%;
+
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+
+    font-size: 16px;
+
+    color: #333;
+
+    line-height: 1.6;
+
+    max-width: 90%;
+
+    margin: 0;
+
+}
+
+
+/* =========================================================
+   PAGE 2 IMAGE
+========================================================= */
+
+.deity-image {
+
+    width: 350px;
+
+    height: 350px;
+
+    object-fit: contain;
+
+    border-radius: 20px;
+
+    display: block;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.20);
+
+}
+
+
+/* =========================================================
+   FRONT COVER
+========================================================= */
+
+.cover {
+
+    position: absolute;
+
+    width: 400px;
+
+    height: 500px;
+
+    left: 0;
+
+    top: 0;
+
+    z-index: 10;
+
+    transform-origin: left center;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 1.5s cubic-bezier(.77,0,.18,1);
+
+    border-radius: 20px;
+
+}
+
+
+/*
+   Front cover outside
+*/
+
+.cover-front {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    left: 0;
+
+    top: 0;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9a9e,
+            #fad0c4,
+            #fbc2eb
+        );
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    backface-visibility: hidden;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.22);
+
+}
+
+
+/* =========================================================
+   COVER BACK
+========================================================= */
+
+.cover-back {
+
+    position: absolute;
+
+    width: 100%;
+
+    height: 100%;
+
+    left: 0;
+
+    top: 0;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fbc2eb,
+            #a18cd1,
+            #f9f586
+        );
+
+    transform:
+        rotateY(180deg);
+
+    backface-visibility: hidden;
+
+}
+
+
+/* =========================================================
+   OPEN BOOK
+========================================================= */
+
+.book.book-open .cover {
+
+    transform:
+        rotateY(-180deg);
+
+}
+
+
+/* =========================================================
+   COVER TITLE
+========================================================= */
+
+.cover h1 {
+
+    font-family: 'Pacifico', cursive;
+
+    font-size: 32px;
+
+    color: white;
+
+    margin: 0;
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 5;
+
+}
+
+
+/* =========================================================
+   FOOTSTEPS BORDER
+========================================================= */
+
+.footsteps-border {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 20;
+
+}
+
+
+/*
+   EXACTLY 3 FOOTSTEPS PER SIDE
+*/
+
+.footsteps-border span {
+
+    position: absolute;
+
+    font-size: 18px;
+
+    opacity: 0.85;
+
+    white-space: nowrap;
+
+}
+
+
+/* TOP */
+
+.top-track span {
+
+    top: 5px;
+
+    animation:
+        moveRight 6s linear infinite;
+
+}
+
+
+/* RIGHT */
+
+.right-track span {
+
+    right: 5px;
+
+    animation:
+        moveDown 6s linear infinite;
+
+}
+
+
+/* BOTTOM */
+
+.bottom-track span {
+
+    bottom: 5px;
+
+    animation:
+        moveLeft 6s linear infinite;
+
+}
+
+
+/* LEFT */
+
+.left-track span {
+
+    left: 5px;
+
+    animation:
+        moveUp 6s linear infinite;
+
+}
+
+
+/* =========================================================
+   FOOTSTEP ANIMATIONS
+========================================================= */
+
+@keyframes moveRight {
+
+    0% {
+        left: -15%;
+    }
+
+    100% {
+        left: 110%;
+    }
+
+}
+
+
+@keyframes moveLeft {
+
+    0% {
+        right: -15%;
+    }
+
+    100% {
+        right: 110%;
+    }
+
+}
+
+
+@keyframes moveDown {
+
+    0% {
+        top: -15%;
+    }
+
+    100% {
+        top: 110%;
+    }
+
+}
+
+
+@keyframes moveUp {
+
+    0% {
+        bottom: -15%;
+    }
+
+    100% {
+        bottom: 110%;
+    }
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+.confetti {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+}
+
+
+.confetti span {
+
+    position: absolute;
+
+    width: 10px;
+
+    height: 10px;
+
+    animation:
+        fall 5s linear infinite;
+
+}
+
+
+.confetti span:nth-child(1) {
+
+    left: 10%;
+
+    background: #ff6ec4;
+
+    animation-delay: 0s;
+
+}
+
+
+.confetti span:nth-child(2) {
+
+    left: 30%;
+
+    background: #42e695;
+
+    animation-delay: 1s;
+
+}
+
+
+.confetti span:nth-child(3) {
+
+    left: 50%;
+
+    background: #f9ca24;
+
+    animation-delay: 2s;
+
+}
+
+
+.confetti span:nth-child(4) {
+
+    left: 70%;
+
+    background: #7873f5;
+
+    animation-delay: 3s;
+
+}
+
+
+.confetti span:nth-child(5) {
+
+    left: 90%;
+
+    background: #ff9a9e;
+
+    animation-delay: 4s;
+
+}
+
+
+@keyframes fall {
+
+    0% {
+
+        transform:
+            translateY(-100px)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(550px)
+            rotate(180deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   FLOATING ICONS
+========================================================= */
+
+.icons {
+
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 6;
+
+}
+
+
+.icons span {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    font-size: 22px;
+
+    animation:
+        float 6s infinite ease-in;
+
+}
+
+
+.icons span:nth-child(1) {
+
+    left: 15%;
+
+    animation-delay: 0s;
+
+}
+
+
+.icons span:nth-child(2) {
+
+    left: 35%;
+
+    animation-delay: 1s;
+
+}
+
+
+.icons span:nth-child(3) {
+
+    left: 55%;
+
+    animation-delay: 2s;
+
+}
+
+
+.icons span:nth-child(4) {
+
+    left: 75%;
+
+    animation-delay: 3s;
+
+}
+
+
+.icons span:nth-child(5) {
+
+    left: 90%;
+
+    animation-delay: 4s;
+
+}
+
+
+@keyframes float {
+
+    0% {
+
+        transform:
+            translateY(0);
+
+        opacity: 0;
+
+    }
+
+    50% {
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(-400px);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   INSTRUCTION
+========================================================= */
+
+.instruction {
+
+    position: absolute;
+
+    bottom: -45px;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 13px;
+
+    opacity: 0.9;
+
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music {
+
+    display: none;
+
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE
+========================================================= */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding: 20px;
+
+        overflow: hidden;
+
+    }
+
+
+    .book-scene {
+
+        width: 90vw;
+
+        height: 112.5vw;
+
+        max-width: 360px;
+
+        max-height: 450px;
+
+    }
+
+
+    .book {
+
+        width: 100%;
+
+        height: 100%;
+
+    }
+
+
+    .page,
+    .cover {
+
+        width: 100%;
+
+        height: 100%;
+
+    }
+
+
+    .cover h1 {
+
+        font-size: 7vw;
+
+        max-font-size: 30px;
+
+    }
+
+
+    .page-one {
+
+        padding: 5vw;
+
+    }
+
+
+    .page-one h2 {
+
+        font-size: 5vw;
+
+        margin-bottom: 4vw;
+
+    }
+
+
+    .message {
+
+        font-size: 3.7vw;
+
+        line-height: 1.5;
+
+    }
+
+
+    .deity-image {
+
+        width: 88%;
+
+        height: 88%;
+
+    }
+
+
+    .footsteps-border span {
+
+        font-size: 16px;
+
+    }
+
+
+    .instruction {
+
+        bottom: -35px;
+
+        font-size: 11px;
+
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 350px) {
+
+    .book-scene {
+
+        width: 92vw;
+
+        height: 115vw;
+
+    }
+
+
+    .page-one h2 {
+
+        font-size: 17px;
+
+    }
+
+
+    .message {
+
+        font-size: 12px;
+
+    }
+
+
+    .deity-image {
+
+        width: 85%;
+
+        height: 85%;
+
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BOOK
+====================================================== -->
+
+<div class="book-scene">
+
+    <div class="book" id="book">
+
+
+        <!-- =================================================
+             PAGE 2
+        ================================================== -->
+
+        <div class="page page-two">
+
+            <div class="page-background"></div>
+
+            <div class="page-content">
+
+                <img
+                    src="https://saimanikanth.github.io/Alludu/Kri-Shiv.png"
+                    alt="Half Lord Krishna and Half Lord Shiva"
+                    class="deity-image"
+                >
+
+            </div>
+
+
+            <!-- PAGE 2 FOOTSTEPS -->
+
+            <div class="footsteps-border">
+
+                <div class="top-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+
+                <div class="right-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+
+                <div class="bottom-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+
+                <div class="left-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             PAGE 1
+        ================================================== -->
+
+        <div class="page page-one">
+
+            <div class="page-background"></div>
+
+            <div class="page-content">
+
+                <h2>
+
+                    Naa Sunami 🌊 →
+                    Nenu ekku pettina Baanam 🏹 →
+                    Naa Alludu... ❤️
+
+                </h2>
+
+
+                <p class="message">
+
+                    A little bundle of joy has arrived —<br>
+
+                    tiny hands, tiny feet,
+                    a precious little soul 💕,<br>
+
+                    filling hearts with love and smiles! ✨
+
+                </p>
+
+
+                <!-- FLOATING ICONS -->
+
+                <div class="icons">
+
+                    <span>💖</span>
+
+                    <span>✨</span>
+
+                    <span>🎈</span>
+
+                    <span>🌸</span>
+
+                    <span>🍼</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAGE 1 FOOTSTEPS -->
+
+            <div class="footsteps-border">
+
+                <div class="top-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+
+                <div class="right-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+
+                <div class="bottom-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+
+                <div class="left-track">
+
+                    <span>👣</span>
+
+                    <span style="animation-delay:2s">
+                        👣
+                    </span>
+
+                    <span style="animation-delay:4s">
+                        👣
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             FRONT COVER
+        ================================================== -->
+
+        <div class="cover" id="cover">
+
+
+            <!-- FRONT -->
+
+            <div class="cover-front">
+
+                <div class="confetti">
+
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+
+                </div>
+
+
+                <h1>
+                    Welcome Home 💖
+                </h1>
+
+            </div>
+
+
+            <!-- BACK OF COVER -->
+
+            <div class="cover-back"></div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="instruction">
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     MUSIC
+====================================================== -->
+
+<audio
+    id="bgMusic"
+    class="music"
+    loop
+>
+
+    <source
+        src="https://www.bensound.com/bensound-music/bensound-sunny.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+
+<script>
+
+/* =========================================================
+   BOOK CONTROLLER
+
+   STATE 0 = CLOSED
+   STATE 1 = BOOK OPEN / PAGE 1
+   STATE 2 = PAGE 1 TURNED / PAGE 2
+========================================================= */
+
+const book = document.getElementById("book");
+
+const music = document.getElementById("bgMusic");
+
+let state = 0;
+
+
+/* =========================================================
+   CLICK BOOK
+========================================================= */
+
+book.addEventListener("click", function () {
+
+
+    /* ================================================
+       CLOSED → OPEN BOOK
+    ================================================ */
+
+    if (state === 0) {
+
+        book.classList.add("book-open");
+
+        state = 1;
+
+    }
+
+
+    /* ================================================
+       PAGE 1 → PAGE 2
+    ================================================ */
+
+    else if (state === 1) {
+
+        book.classList.add("page-two-visible");
+
+        state = 2;
+
+    }
+
+
+    /* ================================================
+       PAGE 2 → CLOSE BOOK
+    ================================================ */
+
+    else if (state === 2) {
+
+        book.classList.remove(
+            "page-two-visible"
+        );
+
+
+        /*
+           Wait for Page 1 to return,
+           then close the cover.
+        */
+
+        setTimeout(function () {
+
+            book.classList.remove(
+                "book-open"
+            );
+
+        }, 850);
+
+
+        state = 0;
+
+    }
+
+
+    /* =================================================
+       START MUSIC AFTER USER INTERACTION
+    ================================================== */
+
+    music.play().catch(function () {
+
+        console.log(
+            "Music requires user interaction."
+        );
+
+    });
+
+});
+
+</script>
+
+
+</body>
+</html>
